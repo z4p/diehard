@@ -11,7 +11,7 @@
 
 typedef unsigned int    uniform;    
 
-typedef unsigned long   counter;
+#define counter int
 
 typedef double          real;
 
