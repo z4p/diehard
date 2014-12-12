@@ -2,6 +2,8 @@
 # Makefile for diehard
 #
 
+.PHONY: clean
+
 CC=gcc
 
 OBJS = diehard.o d3sphere.o kstest.o squeez.o cdbday.o cdosum.o df.o \
@@ -61,3 +63,7 @@ craptest.o: craptest.c header.h macro.h
 	
 runtest.o: runtest.c header.h macro.h
 	$(CC) -c runtest.c
+
+clean:
+	rm -f diehard *.o
+
