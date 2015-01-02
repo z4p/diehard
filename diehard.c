@@ -2,6 +2,8 @@
 #include "header.h"
 #include "macro.h"
 
+#include <string.h>
+
 void do_test(char *fn)
 {
   int i, status[16], tmp, id, flag=0, order=0;
@@ -118,6 +120,7 @@ void diehard()
   ungetc(c, stdin);
 
   fgets(fn, sizeof(fn), stdin);
+  fn[strlen(fn)-1] = '\0';
 
   puts("\n\t\tHERE ARE YOUR CHOICES:\n");
   puts("\t\t1   Birthday Spacings");
