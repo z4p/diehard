@@ -1,4 +1,7 @@
+
 #include "header.h"
+
+#include <string.h>
 
 typedef enum {A,B,C,D,E} letters;
 

@@ -4,6 +4,20 @@
 
 #include <string.h>
 
+void bday(char *fn);
+void binrnk(char *fn, char const*);
+void bitst(char *fn);
+void cnt1s(char *fn, char const*);
+void craptest(char *fn);
+void mindist(char *fn);
+void monky(char *fn, char const*);
+void operm5(char *fn);
+void osum(char *fn);
+void park(char *fn);
+void runtest(char *fn);
+void sphere(char *fn);
+void squeez(char *fn);
+ 
 void do_test(char *fn)
 {
   int i, status[16], tmp, id, flag=0, order=0;
@@ -85,7 +99,7 @@ void do_test(char *fn)
   return;
 }
 
-void diehard()
+void diehard(void)
 {
 
   char c, fn[100];
@@ -148,13 +162,13 @@ void diehard()
 
   do_test(fn);
 
-   return;
+  return;
 }
 
 
-main()
+int main(int argc, char * argv[])
 {
   diehard();
 
-   return;
+  return 0;
 }

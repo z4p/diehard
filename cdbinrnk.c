@@ -4,6 +4,8 @@
 #include "header.h"
 #include "macro.h"
 
+#include <string.h>
+
 /* define a binary matrix */
 typedef struct binmatrix {
 

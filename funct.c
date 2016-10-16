@@ -2,6 +2,8 @@
 #include "header.h"
 #include "macro.h"
 
+#include <string.h>
+
 /*gamma(z) when 2z is a integer*/
 double G(double z)
 {
