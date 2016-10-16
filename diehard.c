@@ -99,42 +99,49 @@ void do_test(char *fn)
   return;
 }
 
-void diehard(void)
+void diehard(int argc, char *argv[])
 {
 
-  char c, fn[100];
+  char c, fnbuf[100];
+  char *fn;
 
+  if (argc < 2) {
 
-  puts("\n\t\t\t\tNOTE\n");
+    puts("\n\t\t\t\tNOTE\n");
 
-  puts("\tMost of the tests in DIEHARD return a p-value, which");
-  puts("\tshould be uniform on [0,1) if the input file contains truly");
-  puts("\tindependent random bits.   Those p-values are obtained by");
-  puts("\tp=1-F(X), where F is the assumed distribution of the sample");
-  puts("\trandom variable X---often normal. But that assumed F is often just");
-  puts("\tan asymptotic approximation, for which the fit will be worst");
-  puts("\tin the tails. Thus you should not be surprised with  occasion-");
-  puts("\tal p-values near 0 or 1, such as .0012 or .9983. When a bit");
-  puts("\tstream really FAILS BIG, you will get p`s of 0 or 1 to six ");
-  puts("\tor more places.  By all means, do not, as a Statistician ");
-  puts("\tmight, think that a p < .025 or p> .975 means that the RNG");
-  puts("\thas \"failed the test at the .05 level\".  Such p`s happen");
-  puts("\tamong the hundreds that DIEHARD produces, even with good RNGs.");
-  puts("\t So keep in mind that \"p happens\"\n");
-  puts("\tEnter the name of the file to be tested.");
-  puts("\tThis must be a form=\"unformatted\",access=\"direct\" binary");
-  puts("\tfile of about 10-12 million bytes. Enter file name: \n");
+    puts("\tMost of the tests in DIEHARD return a p-value, which");
+    puts("\tshould be uniform on [0,1) if the input file contains truly");
+    puts("\tindependent random bits.   Those p-values are obtained by");
+    puts("\tp=1-F(X), where F is the assumed distribution of the sample");
+    puts("\trandom variable X---often normal. But that assumed F is often just");
+    puts("\tan asymptotic approximation, for which the fit will be worst");
+    puts("\tin the tails. Thus you should not be surprised with  occasion-");
+    puts("\tal p-values near 0 or 1, such as .0012 or .9983. When a bit");
+    puts("\tstream really FAILS BIG, you will get p`s of 0 or 1 to six ");
+    puts("\tor more places.  By all means, do not, as a Statistician ");
+    puts("\tmight, think that a p < .025 or p> .975 means that the RNG");
+    puts("\thas \"failed the test at the .05 level\".  Such p`s happen");
+    puts("\tamong the hundreds that DIEHARD produces, even with good RNGs.");
+    puts("\tSo keep in mind that \"p happens\"\n");
+    puts("\tEnter the name of the file to be tested.");
+    puts("\tThis must be a form=\"unformatted\",access=\"direct\" binary");
+    puts("\tfile of about 10-12 million bytes.\n");
 
-  while((c=getchar())==' ') ;
+    printf("Enter file name: ");
+    while((c=getchar())==' ') ;
 
-  if(c=='\n'){
-    return;
+    if(c=='\n'){
+      return;
+    }
+
+    ungetc(c, stdin);
+
+    fgets(fnbuf, sizeof(fnbuf), stdin);
+    fnbuf[strlen(fnbuf)-1] = '\0';
+    fn = fnbuf;
+  } else {
+    fn = argv[1];
   }
-
-  ungetc(c, stdin);
-
-  fgets(fn, sizeof(fn), stdin);
-  fn[strlen(fn)-1] = '\0';
 
   puts("\n\t\tHERE ARE YOUR CHOICES:\n");
   puts("\t\t1   Birthday Spacings");
@@ -158,7 +165,8 @@ void diehard(void)
   puts("\tEnter 16 for all tests. If you want to perform all but a few");
   puts("\ttests, enter corresponding numbers preceded by \"-\" sign.");
   puts("\tTests are executed in the order they are entered.\n");
-  puts("\tEnter your choices.");
+
+  printf("Enter your choices.  ");
 
   do_test(fn);
 
@@ -168,7 +176,7 @@ void diehard(void)
 
 int main(int argc, char * argv[])
 {
-  diehard();
+  diehard(argc, argv);
 
   return 0;
 }
